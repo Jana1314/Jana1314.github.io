@@ -1,0 +1,1616 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="幸商学苑 · 昕怡 Jana - 亲密关系·个人成长专家 | 坐标洛杉矶 | 用脑科学+亲密蓝图解读幸福密码">
+    <title>幸商学苑 | 昕怡 Jana · 亲密关系 · 个人成长</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* =============================================
+           VARIABLES & RESET
+        ============================================= */
+        :root {
+            --bg:          #090707;
+            --bg2:         #120f0f;
+            --bg-card:     #1a1616;
+            --bg-card-h:   #221d1d;
+            --accent:      #c9956c;
+            --accent-l:    #e8c4a0;
+            --accent-d:    #a87244;
+            --gold:        #d4af82;
+            --text:        #f5ede3;
+            --text2:       rgba(245,237,227,.58);
+            --border:      rgba(201,149,108,.15);
+            --border-h:    rgba(201,149,108,.45);
+            --radius:      14px;
+            --font-h:      'Playfair Display', Georgia, serif;
+            --font-b:      'Plus Jakarta Sans', sans-serif;
+            --max:         1160px;
+        }
+
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-b);
+            font-size: 16px;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        img { max-width:100%; display:block; }
+        a { color: inherit; text-decoration: none; }
+        ul { list-style: none; }
+
+        /* =============================================
+           UTILITY
+        ============================================= */
+        .container { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+        .section { padding: 110px 24px; max-width: var(--max); margin: 0 auto; }
+        .tag {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 18px;
+        }
+        .section-title {
+            font-family: var(--font-h);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+        .section-sub {
+            font-size: 15px;
+            color: var(--text2);
+            max-width: 540px;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 30px;
+            border-radius: 50px;
+            font-family: var(--font-b);
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: .04em;
+            cursor: pointer;
+            transition: all .28s ease;
+            border: none;
+            outline: none;
+        }
+        .btn-primary {
+            background: var(--accent);
+            color: var(--bg);
+        }
+        .btn-primary:hover { background: var(--accent-l); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(201,149,108,.35); }
+        .btn-outline {
+            background: transparent;
+            color: var(--text);
+            border: 1.5px solid var(--border-h);
+        }
+        .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+        /* fade-in animation */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(36px);
+            transition: opacity .7s ease, transform .7s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =============================================
+           NAVBAR
+        ============================================= */
+        #navbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 22px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all .35s ease;
+        }
+        #navbar.scrolled {
+            background: rgba(9,7,7,.92);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            padding: 16px 40px;
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-logo {
+            font-family: var(--font-h);
+            font-size: 32px;
+            font-weight: 900;
+            -webkit-text-stroke: 0.5px var(--accent);
+            font-style: italic;
+            background: linear-gradient(135deg, var(--accent-d) 0%, var(--accent) 45%, var(--accent-l) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: .08em;
+        }
+        .nav-logo span { color: var(--accent); }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 36px;
+        }
+        .nav-links a {
+            font-size: 13.5px;
+            font-weight: 500;
+            color: var(--text2);
+            letter-spacing: .04em;
+            transition: color .25s;
+        }
+        .nav-links a:hover { color: var(--accent); }
+        .nav-cta {
+            background: var(--accent);
+            color: var(--bg) !important;
+            padding: 10px 22px;
+            border-radius: 50px;
+            font-weight: 600 !important;
+            color: var(--bg) !important;
+            transition: all .28s ease !important;
+        }
+        .nav-cta:hover { background: var(--accent-l) !important; color: var(--bg) !important; transform: translateY(-1px); }
+
+        /* ---- Language toggle ---- */
+        body.lang-zh .en { display: none !important; }
+        body.lang-en .zh { display: none !important; }
+        .lang-toggle {
+            background: transparent;
+            border: 1px solid var(--border-h);
+            color: var(--accent);
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: .1em;
+            cursor: pointer;
+            transition: all .2s;
+            font-family: var(--font-b);
+            margin-left: 8px;
+        }
+        .lang-toggle:hover {
+            background: rgba(201,149,108,.12);
+            border-color: var(--accent);
+        }
+
+        /* hamburger */
+        .nav-burger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .nav-burger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--text);
+            border-radius: 2px;
+            transition: all .3s ease;
+        }
+        .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .nav-burger.open span:nth-child(2) { opacity: 0; }
+        .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* mobile menu */
+        .nav-mobile {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(9,7,7,.97);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 38px;
+        }
+        .nav-mobile.open { display: flex; }
+        .nav-mobile a {
+            font-family: var(--font-h);
+            font-size: 28px;
+            font-style: italic;
+            color: var(--text2);
+            transition: color .25s;
+        }
+        .nav-mobile a:hover { color: var(--accent); }
+
+        /* =============================================
+           HERO
+        ============================================= */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 140px 40px 100px;
+        }
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 70% 60% at 65% 40%, rgba(201,149,108,.10) 0%, transparent 65%),
+                radial-gradient(ellipse 50% 40% at 20% 80%, rgba(201,149,108,.06) 0%, transparent 60%),
+                linear-gradient(160deg, #0f0b0b 0%, #090707 100%);
+        }
+        .hero-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            pointer-events: none;
+        }
+        .hero-orb-1 {
+            width: 500px; height: 500px;
+            background: rgba(201,149,108,.09);
+            top: -100px; right: -100px;
+        }
+        .hero-orb-2 {
+            width: 300px; height: 300px;
+            background: rgba(201,149,108,.06);
+            bottom: 0; left: 30%;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: var(--max);
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 36px;
+            align-items: center;
+        }
+        body.lang-zh .hero-left { padding-left: 110px; }
+        body.lang-en .hero-left { padding-left: 70px; }
+        body.lang-en .hero-content { gap: 120px; }
+
+        /* ---- Hero RIGHT: QR card ---- */
+        .hero-right {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .qr-card {
+            width: min(320px, 100%);
+            background: var(--bg-card);
+            border: 1px solid var(--border-h);
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 0 70px rgba(201,149,108,.12);
+        }
+        .qr-card-header {
+            padding: 20px 24px 16px;
+            background: linear-gradient(135deg, rgba(201,149,108,.10), rgba(201,149,108,.03));
+            border-bottom: 1px solid var(--border);
+        }
+        .qr-card-eyebrow {
+            font-size: 10.5px;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 6px;
+        }
+        .qr-card-title {
+            font-family: var(--font-h);
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--text);
+            line-height: 1.3;
+        }
+        .qr-img-wrap {
+            padding: 0;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+        }
+        .qr-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .qr-card-note {
+            padding: 18px 22px;
+            border-top: 1px solid var(--border);
+        }
+        .qr-card-note-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent);
+            letter-spacing: .06em;
+            margin-bottom: 10px;
+        }
+        .qr-note-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 9px;
+            font-size: 12.5px;
+            color: var(--text2);
+            line-height: 1.55;
+            margin-bottom: 7px;
+        }
+        .qr-note-step:last-child { margin-bottom: 0; }
+        .qr-step-num {
+            width: 18px; height: 18px;
+            background: rgba(201,149,108,.12);
+            border: 1px solid var(--border-h);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 10px; font-weight: 700;
+            color: var(--accent); flex-shrink: 0; margin-top: 1px;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(201,149,108,.10);
+            border: 1px solid var(--border-h);
+            border-radius: 50px;
+            padding: 8px 18px;
+            font-size: 12.5px;
+            color: var(--accent-l);
+            letter-spacing: .08em;
+            margin-bottom: 56px;
+        }
+        .hero-dot { width:6px; height:6px; background:var(--accent); border-radius:50%; }
+        .hero-line { display:flex; align-items:center; gap:10px; margin-bottom:6px; }
+        .hero-line .hero-dot { flex-shrink:0; }
+        .hero-line:last-child { margin-bottom:0; }
+        .hero-line .hero-dot { flex-shrink:0; }
+        .hero-title {
+            font-family: var(--font-h);
+            font-size: clamp(2.8rem, 5.5vw, 5.5rem);
+            font-weight: 700;
+            line-height: 1.08;
+            letter-spacing: -.01em;
+            margin-bottom: 10px;
+        }
+        /* small avatar next to name */
+        .hero-name-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 30px;
+            margin-bottom: 64px;
+            margin-top: 20px;
+        }
+        .hero-name-wrap .hero-title {
+            margin-top: -12px;
+        }
+        .hero-avatar-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+        .hero-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2.5px solid var(--accent);
+            box-shadow: 0 0 24px rgba(201,149,108,.28);
+            flex-shrink: 0;
+        }
+        .hero-avatar img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            object-position: top center;
+        }
+        .hero-title { margin-bottom: 0; }   /* margin now on wrapper */
+        .hero-coach-title {
+            font-family: var(--font-b);
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin: 0;
+            text-align: center;
+        }
+        .hero-title span { color: var(--accent); font-style: italic; }
+        .hero-title .hero-title-en {
+            color: rgba(245,237,227,.45);
+            font-size: .58em;
+            font-style: italic;
+            font-weight: 400;
+            letter-spacing: .04em;
+            display: block;
+            margin-top: 4px;
+            text-align: center;
+        }
+        .hero-name-en {
+            font-family: var(--font-h);
+            font-size: clamp(1.5rem, 3.5vw, 2.8rem);
+            font-style: italic;
+            color: var(--text2);
+            font-weight: 400;
+            margin-bottom: 32px;
+        }
+        .hero-desc {
+            font-size: clamp(15px, 1.8vw, 17px);
+            color: var(--text2);
+            max-width: 560px;
+            margin-bottom: 14px;
+            line-height: 1.8;
+        }
+        .hero-desc-en {
+            font-size: 14px;
+            color: rgba(245,237,227,.38);
+            max-width: 520px;
+            margin-bottom: 46px;
+            font-style: italic;
+        }
+        .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 60px; }
+        .hero-social {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .hero-social-label {
+            font-size: 11px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--text2);
+        }
+        .hero-social-links { display: flex; gap: 16px; }
+        .social-icon {
+            width: 38px; height: 38px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text2);
+            font-size: 15px;
+            transition: all .25s ease;
+        }
+        .social-icon:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: rgba(201,149,108,.08);
+            transform: translateY(-3px);
+        }
+        .social-icon svg { width:16px; height:16px; fill:currentColor; }
+
+        /* scroll indicator */
+        .scroll-hint {
+            position: absolute;
+            bottom: 40px; left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: var(--text2);
+            font-size: 11px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            animation: float 2.5s ease-in-out infinite;
+        }
+        .scroll-line {
+            width: 1px; height: 42px;
+            background: linear-gradient(to bottom, transparent, var(--accent));
+        }
+        @keyframes float {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50%       { transform: translateX(-50%) translateY(6px); }
+        }
+
+        /* =============================================
+           ABOUT
+        ============================================= */
+        #about-wrap { background: var(--bg2); }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.15fr;
+            gap: 80px;
+            align-items: center;
+        }
+        .about-photo-wrap {
+            position: relative;
+        }
+        .about-photo {
+            width: 100%;
+            aspect-ratio: 3/4;
+            border-radius: 20px;
+            overflow: hidden;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+        }
+        .about-photo img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            object-position: top center;
+        }
+        .about-photo-placeholder {
+            width: 100%; height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            color: var(--text2);
+            font-size: 13px;
+            letter-spacing: .06em;
+        }
+        .photo-icon {
+            width: 60px; height: 60px;
+            border-radius: 50%;
+            border: 2px dashed var(--border-h);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .about-badge-float {
+            position: absolute;
+            bottom: 28px;
+            right: -20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-h);
+            border-radius: var(--radius);
+            padding: 16px 22px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        .about-badge-float .num {
+            font-family: var(--font-h);
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        .about-badge-float .label {
+            font-size: 11px;
+            color: var(--text2);
+            letter-spacing: .06em;
+            margin-top: 2px;
+        }
+        .about-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 28px 0;
+        }
+        .about-tag {
+            background: rgba(201,149,108,.08);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            padding: 7px 16px;
+            font-size: 13px;
+            color: var(--accent-l);
+            letter-spacing: .03em;
+        }
+        .about-bio {
+            font-size: 16px;
+            color: var(--text);
+            line-height: 1.85;
+            margin-bottom: 12px;
+        }
+        .about-bio-en {
+            font-size: 14px;
+            color: var(--text2);
+            line-height: 1.8;
+            font-style: italic;
+            margin-bottom: 36px;
+        }
+        .about-loc {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text2);
+            font-size: 13.5px;
+            margin-bottom: 30px;
+        }
+        .about-loc svg { width:15px; height:15px; fill:var(--accent); }
+
+        /* =============================================
+           EXPERTISE
+        ============================================= */
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 64px;
+        }
+        .exp-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px 34px;
+            transition: all .32s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .exp-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            opacity: 0;
+            transition: opacity .32s ease;
+        }
+        .exp-card:hover { border-color: var(--border-h); background: var(--bg-card-h); transform: translateY(-6px); }
+        .exp-card:hover::before { opacity: 1; }
+        .exp-icon {
+            width: 52px; height: 52px;
+            background: rgba(201,149,108,.10);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            font-size: 22px;
+        }
+        .exp-title {
+            font-family: var(--font-h);
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .exp-title-en {
+            font-size: 12px;
+            color: var(--accent);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+        .exp-desc { font-size: 14px; color: var(--text2); line-height: 1.75; }
+
+        /* =============================================
+           COURSES
+        ============================================= */
+        #courses-wrap { background: var(--bg2); }
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 26px;
+            margin-top: 64px;
+        }
+        .course-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            overflow: hidden;
+            transition: all .32s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .course-card:hover { border-color: var(--border-h); transform: translateY(-6px); box-shadow: 0 24px 64px rgba(0,0,0,.4); }
+        .course-top {
+            padding: 38px 32px 28px;
+            background: linear-gradient(135deg, rgba(201,149,108,.12) 0%, rgba(201,149,108,.04) 100%);
+            border-bottom: 1px solid var(--border);
+            flex: 1;
+        }
+        .course-num {
+            font-family: var(--font-h);
+            font-size: 11px;
+            letter-spacing: .14em;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+        .course-title {
+            font-family: var(--font-h);
+            font-size: clamp(18px, 2vw, 22px);
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 14px;
+        }
+        .course-tagline {
+            font-size: 14px;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+        .course-tagline-en {
+            font-size: 12.5px;
+            color: var(--text2);
+            font-style: italic;
+        }
+        .course-bottom {
+            padding: 22px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .course-label {
+            font-size: 12px;
+            color: var(--text2);
+            letter-spacing: .06em;
+        }
+        .course-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--accent);
+            letter-spacing: .04em;
+            transition: gap .25s ease;
+        }
+        .course-btn:hover { gap: 10px; }
+        .course-btn svg { width:14px; height:14px; fill:currentColor; }
+
+        /* =============================================
+           PLATFORMS
+        ============================================= */
+        .platforms-header { text-align: center; margin-bottom: 64px; }
+        .platforms-header .section-sub { margin: 0 auto; text-align: center; }
+        .platforms-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 18px;
+        }
+        .platform-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 32px 20px;
+            text-align: center;
+            transition: all .3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+        }
+        .platform-card:hover {
+            border-color: var(--border-h);
+            background: var(--bg-card-h);
+            transform: translateY(-5px);
+            box-shadow: 0 16px 48px rgba(0,0,0,.3);
+        }
+        .platform-logo {
+            width: 52px; height: 52px;
+            border-radius: 14px;
+            background: rgba(201,149,108,.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        .platform-logo svg { width:28px; height:28px; }
+        .platform-name {
+            font-size: 13.5px;
+            font-weight: 600;
+            color: var(--text);
+        }
+        .platform-handle {
+            font-size: 11.5px;
+            color: var(--text2);
+        }
+        .platform-arrow {
+            font-size: 11px;
+            color: var(--accent);
+            letter-spacing: .06em;
+            opacity: 0;
+            transform: translateY(4px);
+            transition: all .25s ease;
+        }
+        .platform-card:hover .platform-arrow { opacity: 1; transform: translateY(0); }
+
+        /* =============================================
+           CONTACT
+        ============================================= */
+        #contact-wrap { background: var(--bg2); }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 80px;
+            align-items: start;
+        }
+        .contact-info h2 {
+            font-family: var(--font-h);
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .contact-info p {
+            font-size: 15px;
+            color: var(--text2);
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+        .contact-items { display: flex; flex-direction: column; gap: 22px; }
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+        .contact-item-icon {
+            width: 44px; height: 44px;
+            border-radius: 12px;
+            background: rgba(201,149,108,.08);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 18px;
+        }
+        .contact-item-icon svg { width:20px; height:20px; fill:var(--accent); }
+        .contact-item-label {
+            font-size: 11px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+        .contact-item-val {
+            font-size: 15px;
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        /* form */
+        .contact-form {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 44px 40px;
+        }
+        .form-title {
+            font-family: var(--font-h);
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .form-sub {
+            font-size: 13.5px;
+            color: var(--text2);
+            margin-bottom: 32px;
+        }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .form-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; }
+        .form-group label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--text2);
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            background: rgba(255,255,255,.03);
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            padding: 13px 16px;
+            color: var(--text);
+            font-family: var(--font-b);
+            font-size: 14.5px;
+            outline: none;
+            transition: border-color .25s;
+            width: 100%;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus { border-color: var(--accent); }
+        .form-group textarea { min-height: 120px; resize: vertical; }
+        .form-group select option { background: var(--bg-card); }
+        .form-group input::placeholder,
+        .form-group textarea::placeholder { color: rgba(245,237,227,.25); }
+        .form-submit { width: 100%; justify-content: center; margin-top: 6px; padding: 16px; font-size: 15px; }
+        .form-note {
+            text-align: center;
+            font-size: 12px;
+            color: var(--text2);
+            margin-top: 14px;
+        }
+        #form-success {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            color: var(--accent);
+            font-size: 15px;
+        }
+
+        /* =============================================
+           FOOTER
+        ============================================= */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 48px 40px;
+        }
+        .footer-inner {
+            max-width: var(--max);
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+        .footer-logo {
+            font-family: var(--font-h);
+            font-size: 18px;
+            font-style: italic;
+            background: linear-gradient(135deg, var(--accent-d) 0%, var(--accent) 45%, var(--accent-l) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .footer-logo span { color: var(--accent); }
+        .footer-links { display: flex; gap: 28px; }
+        .footer-links a {
+            font-size: 13px;
+            color: var(--text2);
+            transition: color .25s;
+        }
+        .footer-links a:hover { color: var(--accent); }
+        .footer-copy {
+            font-size: 12.5px;
+            color: rgba(245,237,227,.3);
+        }
+
+        /* =============================================
+           DIVIDER LINE
+        ============================================= */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border), transparent);
+            max-width: var(--max);
+            margin: 0 auto;
+        }
+
+        /* =============================================
+           RESPONSIVE
+        ============================================= */
+        @media (max-width: 1024px) {
+            .hero-content { grid-template-columns: 1fr; gap: 48px; }
+            .hero-right { justify-content: flex-start; }
+            .qr-card { width: min(300px, 100%); }
+            .expertise-grid,
+            .courses-grid { grid-template-columns: 1fr 1fr; }
+            .platforms-grid { grid-template-columns: repeat(3, 1fr); }
+            .about-grid { grid-template-columns: 1fr; gap: 48px; }
+            .about-photo-wrap { max-width: 380px; margin: 0 auto; }
+            .about-badge-float { right: 0; }
+            .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+        }
+        @media (max-width: 768px) {
+            .section { padding: 80px 20px; }
+            #hero { padding: 120px 20px 80px; }
+            body.lang-zh .hero-left,
+            body.lang-en .hero-left { padding-left: 0; }
+            .expertise-grid,
+            .courses-grid { grid-template-columns: 1fr; }
+            .platforms-grid { grid-template-columns: repeat(2, 1fr); }
+            .nav-links { display: none; }
+            .nav-burger { display: flex; }
+            #navbar { padding: 18px 20px; }
+            #navbar.scrolled { padding: 14px 20px; }
+            .hero-btns { flex-direction: column; }
+            .hero-btns .btn { width: 100%; justify-content: center; }
+            .form-row { grid-template-columns: 1fr; }
+            .contact-form { padding: 30px 24px; }
+            .footer-inner { flex-direction: column; text-align: center; }
+            .footer-links { justify-content: center; }
+        }
+        @media (max-width: 480px) {
+            .platforms-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+    </style>
+</head>
+<body class="lang-zh">
+
+<!-- =============================================
+     NAVBAR
+============================================= -->
+<nav id="navbar">
+    <a href="#hero" class="nav-logo">幸商学苑</a>
+    <ul class="nav-links">
+        <li><a href="#about"><span class="zh">关于我</span><span class="en">About</span></a></li>
+        <li><a href="#expertise"><span class="zh">专长</span><span class="en">Expertise</span></a></li>
+        <li><a href="#courses"><span class="zh">课程</span><span class="en">Courses</span></a></li>
+        <li><a href="#platforms"><span class="zh">平台</span><span class="en">Find Me</span></a></li>
+        <li><a href="#contact" class="nav-cta"><span class="zh">预约咨询</span><span class="en">Connect</span></a></li>
+    </ul>
+    <button class="lang-toggle" id="langBtn" onclick="toggleLang()">EN</button>
+    <div class="nav-burger" id="burger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+    </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="nav-mobile" id="mobileMenu">
+    <a href="#about"     onclick="closeMenu()"><span class="zh">关于我</span><span class="en">About</span></a>
+    <a href="#expertise" onclick="closeMenu()"><span class="zh">专长</span><span class="en">Expertise</span></a>
+    <a href="#courses"   onclick="closeMenu()"><span class="zh">课程</span><span class="en">Courses</span></a>
+    <a href="#platforms" onclick="closeMenu()"><span class="zh">找到我</span><span class="en">Find Me</span></a>
+    <a href="#contact"   onclick="closeMenu()" style="color:var(--accent)"><span class="zh">预约咨询</span><span class="en">Connect</span></a>
+    <button class="lang-toggle" onclick="toggleLang(); closeMenu();" style="margin:8px auto 0; display:block;" id="langBtnMobile"><span class="zh">EN</span><span class="en">中</span></button>
+</div>
+
+
+<!-- =============================================
+     HERO
+============================================= -->
+<section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+
+    <div class="hero-content">
+
+        <!-- ===== LEFT: text content ===== -->
+        <div class="hero-left">
+            <div class="hero-badge fade-up">
+                📍 Los Angeles · 洛杉矶
+            </div>
+
+            <div class="hero-name-wrap fade-up">
+                <!-- 左：头像 + 幸福教练 竖向组合 -->
+                <div class="hero-avatar-group">
+                    <div class="hero-avatar">
+                        <img src="avatar.jpg" alt="昕怡 Jana"
+                             onerror="this.style.display='none'">
+                    </div>
+                    <p class="hero-coach-title"><span class="zh">幸福教练</span><span class="en">SEXCOACH</span></p>
+                </div>
+                <!-- 右：中英文名字 -->
+                <h1 class="hero-title"><span>昕怡</span><br><span class="hero-title-en">Jana</span></h1>
+            </div>
+            <p class="hero-desc fade-up zh">
+                <span class="hero-line"><span class="hero-dot"></span>专注于亲密关系 · 个人成长</span>
+                <span class="hero-line"><span class="hero-dot"></span>用脑科学 + 亲密蓝图解读幸福密码</span>
+                <span class="hero-line"><span class="hero-dot"></span>一起觉醒亲密能量，活出幸福人生</span>
+            </p>
+            <p class="hero-desc fade-up en">
+                <span class="hero-line"><span class="hero-dot"></span>Focused on Intimacy &amp; Personal Growth</span>
+                <span class="hero-line"><span class="hero-dot"></span><span style="white-space:nowrap">Decoding happiness with neuroscience + Erotic Blueprint</span></span>
+                <span class="hero-line"><span class="hero-dot"></span>Awaken your intimate energy. Live your best life.</span>
+            </p>
+
+            <div class="hero-btns fade-up">
+                <a href="#courses" class="btn btn-primary"><span class="zh">探索课程 →</span><span class="en">Explore Courses →</span></a>
+                <a href="#contact" class="btn btn-outline"><span class="zh">预约咨询</span><span class="en">Book a Session</span></a>
+            </div>
+
+            <div class="hero-social fade-up">
+                <span class="hero-social-label">Follow</span>
+                <div class="hero-social-links">
+                    <a href="https://www.instagram.com/jana131419/" target="_blank" class="social-icon" title="Instagram">
+                        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    </a>
+                    <a href="https://www.youtube.com/@昕怡Jana" target="_blank" class="social-icon" title="YouTube">
+                        <svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+                    </a>
+                    <a href="https://xhslink.com/m/8njqC5tY99Z" target="_blank" class="social-icon" title="小红书">
+                        <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.5 8.5h-2v7h-1.5v-7h-2V7H17.5v1.5zM9 7h4v1.5h-1.25V14H10.5V8.5H9V7z" opacity=".85"/><path d="M6.5 15.5c0 .828.672 1.5 1.5 1.5s1.5-.672 1.5-1.5-.672-1.5-1.5-1.5-1.5.672-1.5 1.5z"/></svg>
+                    </a>
+                    <a href="https://v.douyin.com/P47ElDoJ1aU/" target="_blank" class="social-icon" title="抖音">
+                        <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.17 8.17 0 004.77 1.52V6.77a4.85 4.85 0 01-1-.08z"/></svg>
+                    </a>
+                    <a href="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzUxODg5MjM1Mg==&scene=124#wechat_redirect" target="_blank" class="social-icon" title="微信公众号">
+                        <svg viewBox="0 0 24 24"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 00.167-.054l1.903-1.114a.864.864 0 01.717-.098 10.16 10.16 0 002.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178A1.17 1.17 0 014.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178 1.17 1.17 0 01-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 01.598.082l1.584.926a.272.272 0 00.14.047c.134 0 .24-.11.24-.247 0-.06-.023-.12-.038-.177l-.327-1.233a.582.582 0 01-.023-.156.49.49 0 01.201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-7.062-6.122zm-3.74 2.632c.535 0 .969.44.969.982a.976.976 0 01-.969.983.976.976 0 01-.969-.983c0-.542.434-.982.97-.982zm3.814 0c.535 0 .969.44.969.982a.976.976 0 01-.969.983.976.976 0 01-.969-.983c0-.542.434-.982.969-.982z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div><!-- /hero-left -->
+
+        <!-- ===== RIGHT: QR code card ===== -->
+        <div class="hero-right fade-up" style="transition-delay:.25s">
+            <div class="qr-card">
+                <div class="qr-card-header">
+                    <div class="qr-card-eyebrow">免费测试 · Free Quiz</div>
+                    <div class="qr-card-title">扫码测测你的<br>亲密蓝图类型 🌹</div>
+                </div>
+                <!--
+                    请将二维码图片另存为 qrcode.png，放到 jana-website 文件夹里
+                -->
+                <div class="qr-img-wrap">
+                    <img src="qrcode.png" alt="亲密蓝图测试二维码"
+                         onerror="this.parentElement.style.background='var(--bg-card)';this.parentElement.innerHTML='<div style=&quot;padding:50px 20px;text-align:center;color:rgba(245,237,227,.4);font-size:13px&quot;>📱 请将 qrcode.png<br>放入网站文件夹</div>'">
+                </div>
+                <div class="qr-card-note">
+                    <div class="qr-card-note-title">完成测试后请 →</div>
+                    <div class="qr-note-step">
+                        <span class="qr-step-num">1</span>
+                        保存测试报告
+                    </div>
+                    <div style="font-size:11px;color:var(--accent);padding:2px 0 6px 27px;margin-top:-4px;opacity:.8;">— 或 —</div>
+                    <div class="qr-note-step">
+                        <span class="qr-step-num">2</span>
+                        截屏有分数的部分
+                    </div>
+                    <div class="qr-note-step" style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border)">
+                        <span class="qr-step-num">→</span>
+                        发给我，我来为你专属解读 🌹
+                    </div>
+                </div>
+            </div>
+        </div><!-- /hero-right -->
+
+    </div>
+
+    <div class="scroll-hint">
+        <div class="scroll-line"></div>
+        <span>Scroll</span>
+    </div>
+</section>
+
+
+<!-- =============================================
+     ABOUT
+============================================= -->
+<div id="about-wrap">
+<div class="section" id="about">
+    <div class="about-grid">
+        <!-- Photo -->
+        <div class="about-photo-wrap fade-up">
+            <div class="about-photo">
+                <!--
+                    将你的头像文件命名为 photo.jpg 放在与 index.html 同一文件夹中
+                    即可自动显示。如未放入图片，会显示占位符。
+                -->
+                <img src="photo.jpg" alt="昕怡 Jana" onerror="this.style.display='none';document.getElementById('photo-placeholder').style.display='flex'">
+                <div class="about-photo-placeholder" id="photo-placeholder" style="display:none">
+                    <div class="photo-icon">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="rgba(201,149,108,.5)"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+                    </div>
+                    <span>放入 photo.jpg</span>
+                </div>
+            </div>
+            <div class="about-badge-float">
+                <div class="num">LA</div>
+                <div class="label">Los Angeles</div>
+            </div>
+        </div>
+
+        <!-- Text -->
+        <div class="fade-up">
+            <span class="tag"><span class="zh">关于我</span><span class="en">About</span></span>
+            <h2 class="section-title"><span class="zh">Hi, 我是昕怡 Jana</span><span class="en">Hi, I'm Jana</span></h2>
+
+            <div class="about-loc">
+                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Los Angeles, CA
+            </div>
+
+            <p class="about-bio zh">
+                坐标洛杉矶，专注于亲密关系与个人成长领域。我相信每个人都值得拥有深刻而幸福的亲密连接。通过结合脑科学与亲密蓝图框架，我帮助学员解读自己内心真实的需求，觉醒亲密能量，重建对自己和关系的信任。
+            </p>
+            <p class="about-bio en">
+                Based in Los Angeles, I specialize in intimacy and personal growth. I believe everyone deserves deep, fulfilling connections. Through the lens of neuroscience and the Erotic Blueprint, I help clients uncover their authentic needs, awaken their intimate energy, and rebuild trust in themselves and their relationships.
+            </p>
+
+            <div class="about-tags">
+                <span class="about-tag">🧠 脑科学 Neuroscience</span>
+                <span class="about-tag">💞 亲密蓝图 Erotic Blueprint</span>
+                <span class="about-tag">🌸 个人成长 Personal Growth</span>
+                <span class="about-tag">🌹 亲密关系 Relationships</span>
+            </div>
+
+            <a href="#contact" class="btn btn-primary"><span class="zh">与我联系 →</span><span class="en">Get in Touch →</span></a>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<!-- =============================================
+     EXPERTISE
+============================================= -->
+<section class="section" id="expertise">
+    <div class="fade-up" style="max-width:600px">
+        <span class="tag"><span class="zh">专长领域</span><span class="en">Expertise</span></span>
+        <h2 class="section-title"><span class="zh">我能帮你做什么</span><span class="en">How I Can Help</span></h2>
+        <p class="section-sub zh">科学系统的方法，温柔有力的陪伴，帮你在亲密关系中找到真实的自己。</p>
+        <p class="section-sub en">A science-backed, compassionate approach to help you find your authentic self in intimacy and personal growth.</p>
+    </div>
+
+    <div class="expertise-grid">
+        <div class="exp-card fade-up">
+            <div class="exp-icon">💞</div>
+            <div class="exp-title zh">亲密关系咨询</div>
+            <div class="exp-title en">Relationship Coaching</div>
+            <p class="exp-desc zh">用亲密蓝图与脑科学解读爱与欲的需求，重建深层连接，让亲密关系成为你成长的土壤。</p>
+            <p class="exp-desc en">Using the Erotic Blueprint and neuroscience to decode love and desire, rebuild deep connection, and let relationships become the soil of your growth.</p>
+        </div>
+        <div class="exp-card fade-up" style="transition-delay:.1s">
+            <div class="exp-icon">💫</div>
+            <div class="exp-title zh">修复盆底损伤</div>
+            <div class="exp-title en">Pelvic Floor Repair</div>
+            <p class="exp-desc zh">科学修复盆底功能，从根源恢复核心力量与身体感受力，重建对自己身体的信任与主权。</p>
+            <p class="exp-desc en">Scientifically restore pelvic floor function, rebuild core strength and body awareness from the root, and reclaim sovereignty over your own body.</p>
+        </div>
+        <div class="exp-card fade-up" style="transition-delay:.2s">
+            <div class="exp-icon">🌿</div>
+            <div class="exp-title zh">减压 &amp; 疗愈</div>
+            <div class="exp-title en">Stress Relief &amp; Healing</div>
+            <p class="exp-desc zh">通过身心整合的疗愈方式，释放积压的压力与情绪，找回内在的平静与能量，重新与自己连接。</p>
+            <p class="exp-desc en">Through somatic integration, release accumulated stress and emotions, rediscover inner peace and energy, and reconnect with yourself.</p>
+        </div>
+    </div>
+</section>
+
+
+<!-- =============================================
+     COURSES
+============================================= -->
+<div id="courses-wrap">
+<div class="section" id="courses">
+    <div class="fade-up" style="max-width:600px">
+        <span class="tag"><span class="zh">课程服务</span><span class="en">Programs</span></span>
+        <h2 class="section-title"><span class="zh">为你定制的成长旅程</span><span class="en">Your Personal Growth Journey</span></h2>
+        <p class="section-sub zh">每一个课程都是一次自我觉醒的邀请，一起走向更幸福、更完整的自己。</p>
+        <p class="section-sub en">Every program is an invitation to awaken — toward a happier, more whole version of yourself.</p>
+    </div>
+
+    <div class="courses-grid">
+        <!-- Course 1 -->
+        <div class="course-card fade-up">
+            <div class="course-top">
+                <div class="course-num">Program 01</div>
+                <div class="course-title"><span class="zh">S密 7天训练营</span><span class="en">7-Day Sensuality Training</span></div>
+                <p class="course-tagline zh">重养自己，焕回青春</p>
+                <p class="course-tagline en">Nurture yourself, rediscover vitality</p>
+            </div>
+            <div class="course-bottom">
+                <span class="course-label"><span class="zh">微信咨询了解详情</span><span class="en">Inquire via WeChat</span></span>
+                <a href="#contact" class="course-btn">
+                    <span class="zh">了解课程</span><span class="en">Learn More</span>
+                    <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- Course 2 -->
+        <div class="course-card fade-up" style="transition-delay:.12s">
+            <div class="course-top">
+                <div class="course-num">Program 02</div>
+                <div class="course-title"><span class="zh">情爱蓝图工作坊</span><span class="en">Erotic Blueprint Workshop</span></div>
+                <p class="course-tagline zh">找到彼此爱与欲的需求，重燃激情</p>
+                <p class="course-tagline en">Discover each other's love language &amp; desires, reignite passion</p>
+            </div>
+            <div class="course-bottom">
+                <span class="course-label"><span class="zh">微信咨询了解详情</span><span class="en">Inquire via WeChat</span></span>
+                <a href="#contact" class="course-btn">
+                    <span class="zh">了解课程</span><span class="en">Learn More</span>
+                    <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- Course 3 -->
+        <div class="course-card fade-up" style="transition-delay:.24s">
+            <div class="course-top">
+                <div class="course-num">Program 03</div>
+                <div class="course-title"><span class="zh">身体触碰疗愈</span><span class="en">Somatic Touch Healing</span></div>
+                <p class="course-tagline zh">抚平创伤，重建身体安全感</p>
+                <p class="course-tagline en">Soothe trauma, rebuild bodily safety</p>
+            </div>
+            <div class="course-bottom">
+                <span class="course-label"><span class="zh">微信咨询了解详情</span><span class="en">Inquire via WeChat</span></span>
+                <a href="#contact" class="course-btn">
+                    <span class="zh">了解课程</span><span class="en">Learn More</span>
+                    <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<!-- =============================================
+     PLATFORMS
+============================================= -->
+<section class="section" id="platforms">
+    <div class="platforms-header fade-up">
+        <span class="tag"><span class="zh">找到我</span><span class="en">Find Me</span></span>
+        <h2 class="section-title"><span class="zh">关注我的创作</span><span class="en">Follow us</span></h2>
+        <p class="section-sub zh">在各大平台持续分享关于亲密关系、身体健康与个人成长的内容</p>
+        <p class="section-sub en" style="white-space:nowrap">Sharing content on intimacy, body wellness, and personal growth across all platforms</p>
+    </div>
+
+    <div class="platforms-grid">
+        <a href="https://v.douyin.com/P47ElDoJ1aU/" target="_blank" class="platform-card fade-up">
+            <div class="platform-logo" style="background:rgba(0,0,0,.3)">
+                <svg viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.17 8.17 0 004.77 1.52V6.77a4.85 4.85 0 01-1-.08z"/></svg>
+            </div>
+            <div class="platform-name"><span class="zh">抖音</span><span class="en">Douyin</span></div>
+            <div class="platform-handle">昕怡 Jana</div>
+            <div class="platform-arrow"><span class="zh">关注 →</span><span class="en">Follow →</span></div>
+        </a>
+
+        <a href="https://xhslink.com/m/8njqC5tY99Z" target="_blank" class="platform-card fade-up" style="transition-delay:.08s">
+            <div class="platform-logo" style="background:rgba(255,50,50,.1)">
+                <svg viewBox="0 0 48 48" fill="none">
+                    <rect width="48" height="48" rx="12" fill="#FF2442" opacity=".15"/>
+                    <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-size="22" font-weight="bold" fill="#FF2442">小</text>
+                </svg>
+            </div>
+            <div class="platform-name"><span class="zh">小红书</span><span class="en">Rednote</span></div>
+            <div class="platform-handle">昕怡 Jana</div>
+            <div class="platform-arrow"><span class="zh">关注 →</span><span class="en">Follow →</span></div>
+        </a>
+
+        <a href="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzUxODg5MjM1Mg==&scene=124#wechat_redirect" target="_blank" class="platform-card fade-up" style="transition-delay:.16s">
+            <div class="platform-logo" style="background:rgba(9,180,95,.1)">
+                <svg viewBox="0 0 24 24" fill="#09B45F"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 00.167-.054l1.903-1.114a.864.864 0 01.717-.098 10.16 10.16 0 002.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178A1.17 1.17 0 014.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178 1.17 1.17 0 01-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 01.598.082l1.584.926a.272.272 0 00.14.047c.134 0 .24-.11.24-.247 0-.06-.023-.12-.038-.177l-.327-1.233a.582.582 0 01-.023-.156.49.49 0 01.201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-7.062-6.122zm-3.74 2.632c.535 0 .969.44.969.982a.976.976 0 01-.969.983.976.976 0 01-.969-.983c0-.542.434-.982.97-.982zm3.814 0c.535 0 .969.44.969.982a.976.976 0 01-.969.983.976.976 0 01-.969-.983c0-.542.434-.982.969-.982z"/></svg>
+            </div>
+            <div class="platform-name"><span class="zh">微信公众号</span><span class="en">Official Accounts</span></div>
+            <div class="platform-handle">昕怡 Jana</div>
+            <div class="platform-arrow"><span class="zh">关注 →</span><span class="en">Follow →</span></div>
+        </a>
+
+        <a href="https://www.youtube.com/@昕怡Jana" target="_blank" class="platform-card fade-up" style="transition-delay:.24s">
+            <div class="platform-logo">
+                <svg viewBox="0 0 24 24" fill="#FF0000"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+            </div>
+            <div class="platform-name">YouTube</div>
+            <div class="platform-handle">@昕怡Jana</div>
+            <div class="platform-arrow"><span class="zh">订阅 →</span><span class="en">Subscribe →</span></div>
+        </a>
+
+        <a href="https://www.instagram.com/jana131419/" target="_blank" class="platform-card fade-up" style="transition-delay:.32s">
+            <div class="platform-logo">
+                <svg viewBox="0 0 24 24" fill="url(#ig-grad)">
+                    <defs>
+                        <linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#f09433"/>
+                            <stop offset="25%" style="stop-color:#e6683c"/>
+                            <stop offset="50%" style="stop-color:#dc2743"/>
+                            <stop offset="75%" style="stop-color:#cc2366"/>
+                            <stop offset="100%" style="stop-color:#bc1888"/>
+                        </linearGradient>
+                    </defs>
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+            </div>
+            <div class="platform-name">Instagram</div>
+            <div class="platform-handle">@jana131419</div>
+            <div class="platform-arrow"><span class="zh">关注 →</span><span class="en">Follow →</span></div>
+        </a>
+    </div>
+</section>
+
+
+<!-- =============================================
+     CONTACT
+============================================= -->
+<div id="contact-wrap">
+<div class="section" id="contact">
+    <div class="contact-grid">
+        <!-- Left info -->
+        <div class="fade-up">
+            <span class="tag"><span class="zh">联系我</span><span class="en">Contact</span></span>
+            <h2 class="contact-info" style="font-family:var(--font-h); font-size:clamp(1.8rem,3.5vw,2.6rem); font-weight:600; line-height:1.2; margin-bottom:18px;">
+                <span class="zh">开始你的<br><span style="color:var(--accent); font-style:italic">成长之旅</span></span>
+                <span class="en">Begin Your<br><span style="color:var(--accent); font-style:italic">Journey</span></span>
+            </h2>
+            <p style="font-size:15px; color:var(--text2); margin-bottom:40px; line-height:1.85;">
+                <span class="zh">无论是了解课程详情、预约一对一咨询，还是合作邀约，都欢迎与我联系。我会在1-2个工作日内回复你。</span>
+                <span class="en">Feel free to reach out for course inquiries, 1-on-1 sessions, or collaboration. I'll respond within 1-2 business days.</span>
+            </p>
+
+            <div class="contact-items">
+                <div class="contact-item">
+                    <div class="contact-item-icon">
+                        <svg viewBox="0 0 24 24"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 00.167-.054l1.903-1.114a.864.864 0 01.717-.098 10.16 10.16 0 002.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178A1.17 1.17 0 014.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178 1.17 1.17 0 01-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 01.598.082l1.584.926a.272.272 0 00.14.047c.134 0 .24-.11.24-.247 0-.06-.023-.12-.038-.177l-.327-1.233a.582.582 0 01-.023-.156.49.49 0 01.201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-7.062-6.122zm-3.74 2.632c.535 0 .969.44.969.982a.976.976 0 01-.969.983.976.976 0 01-.969-.983c0-.542.434-.982.97-.982zm3.814 0c.535 0 .969.44.969.982a.976.976 0 01-.969.983.976.976 0 01-.969-.983c0-.542.434-.982.969-.982z"/></svg>
+                    </div>
+                    <div>
+                        <div class="contact-item-label"><span class="zh">微信</span><span class="en">WeChat</span></div>
+                        <div class="contact-item-val">xinyi-liaoyu</div>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-item-icon">
+                        <svg viewBox="0 0 24 24" fill="var(--accent)"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    </div>
+                    <div>
+                        <div class="contact-item-label"><span class="zh">邮件</span><span class="en">Email</span></div>
+                        <div class="contact-item-val">jana131419@gmail.com</div>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-item-icon">
+                        <svg viewBox="0 0 24 24" fill="var(--accent)"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                    </div>
+                    <div>
+                        <div class="contact-item-label"><span class="zh">坐标</span><span class="en">Location</span></div>
+                        <div class="contact-item-val">Los Angeles, CA</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form -->
+        <div class="contact-form fade-up" style="transition-delay:.15s">
+            <div class="form-title"><span class="zh">发送消息</span><span class="en">Send a Message</span></div>
+            <div class="form-sub"><span class="zh">给我留言，我会尽快回复</span><span class="en">I'll get back to you within 1-2 business days</span></div>
+
+            <!--
+                表单提交说明：
+                1. 前往 https://formspree.io 免费注册
+                2. 创建一个 Form，获取你的 Form ID（格式：xabcdefg）
+                3. 将下方 action 中的 YOUR_FORM_ID 替换为你的 ID
+            -->
+            <form id="contactForm" action="https://formspree.io/f/mlgvjvrl" method="POST" onsubmit="handleSubmit(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name"><span class="zh">姓名</span><span class="en">Name</span> *</label>
+                        <input type="text" id="name" name="name" placeholder="你的名字 / Your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email"><span class="zh">邮件</span><span class="en">Email</span> *</label>
+                        <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="wechat"><span class="zh">微信号（可选）</span><span class="en">WeChat (Optional)</span></label>
+                    <input type="text" id="wechat" name="wechat" placeholder="你的微信号 / WeChat ID">
+                </div>
+                <div class="form-group">
+                    <label for="interest"><span class="zh">感兴趣的内容</span><span class="en">I'm Interested In</span></label>
+                    <select id="interest" name="interest">
+                        <option value=""><span class="zh">请选择</span> / Please select</option>
+                        <option value="S密7天训练营">S密 7天训练营</option>
+                        <option value="情爱蓝图工作坊">情爱蓝图工作坊</option>
+                        <option value="身体触碰疗愈">身体触碰疗愈</option>
+                        <option value="一对一咨询">一对一咨询 1-on-1 Coaching</option>
+                        <option value="合作邀约">合作邀约 Collaboration</option>
+                        <option value="其他">其他 Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message"><span class="zh">留言</span><span class="en">Message</span> *</label>
+                    <textarea id="message" name="message" placeholder="告诉我你的情况或问题 / Tell me about yourself..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary form-submit"><span class="zh">发送消息 →</span><span class="en">Send Message →</span></button>
+                <p class="form-note"><span class="zh">提交后我会在1-2个工作日内回复</span><span class="en">I'll reply within 1-2 business days</span></p>
+            </form>
+            <div id="form-success">
+                <span class="zh">✨ 消息已发送！我会尽快回复你。</span>
+                <span class="en">✨ Message sent! I'll get back to you soon.</span>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<!-- =============================================
+     FOOTER
+============================================= -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-logo">幸商学苑 <span>· 昕怡 Jana</span></div>
+        <ul class="footer-links">
+            <li><a href="#about"><span class="zh">关于我</span><span class="en">About</span></a></li>
+            <li><a href="#expertise"><span class="zh">专长</span><span class="en">Expertise</span></a></li>
+            <li><a href="#courses"><span class="zh">课程</span><span class="en">Courses</span></a></li>
+            <li><a href="#contact"><span class="zh">联系</span><span class="en">Contact</span></a></li>
+        </ul>
+        <div class="footer-copy">&copy; 2025 幸商学苑 · 昕怡 Jana. All rights reserved.</div>
+    </div>
+</footer>
+
+
+<!-- =============================================
+     JAVASCRIPT
+============================================= -->
+<script>
+    /* --- Navbar scroll --- */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    /* --- Mobile menu --- */
+    function toggleMenu() {
+        document.getElementById('burger').classList.toggle('open');
+        document.getElementById('mobileMenu').classList.toggle('open');
+        document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : '';
+    }
+    function closeMenu() {
+        document.getElementById('burger').classList.remove('open');
+        document.getElementById('mobileMenu').classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    /* --- Scroll fade-in --- */
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.classList.add('visible');
+                observer.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    /* --- Form submit --- */
+    function handleSubmit(e) {
+        const formId = document.getElementById('contactForm').action;
+        if (formId.includes('YOUR_FORM_ID')) {
+            e.preventDefault();
+            // Fallback: open mailto
+            const name    = document.getElementById('name').value;
+            const email   = document.getElementById('email').value;
+            const subject = encodeURIComponent('来自网站的留言 - ' + name);
+            const body    = encodeURIComponent(
+                '姓名: ' + name + '\n' +
+                '邮件: ' + email + '\n' +
+                '微信: ' + (document.getElementById('wechat').value || '未提供') + '\n' +
+                '感兴趣: ' + (document.getElementById('interest').value || '未选择') + '\n\n' +
+                '留言:\n' + document.getElementById('message').value
+            );
+            window.location.href = `mailto:jana131419@gmail.com?subject=${subject}&body=${body}`;
+            document.getElementById('contactForm').style.display = 'none';
+            document.getElementById('form-success').style.display = 'block';
+            return;
+        }
+        // Real Formspree submission
+        const form = e.target;
+        fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+        }).then(r => {
+            if (r.ok) {
+                form.style.display = 'none';
+                document.getElementById('form-success').style.display = 'block';
+            }
+        }).catch(() => {});
+        e.preventDefault();
+    }
+
+    /* --- Staggered card animations --- */
+    document.querySelectorAll('.expertise-grid .exp-card, .courses-grid .course-card, .platforms-grid .platform-card').forEach((card, i) => {
+        card.style.transitionDelay = (i * 0.1) + 's';
+    });
+
+    /* --- Language toggle --- */
+    function toggleLang() {
+        const body = document.body;
+        const isZh = body.classList.contains('lang-zh');
+        body.classList.remove(isZh ? 'lang-zh' : 'lang-en');
+        body.classList.add(isZh ? 'lang-en' : 'lang-zh');
+        const btn = document.getElementById('langBtn');
+        if (btn) btn.textContent = isZh ? '中' : 'EN';
+        localStorage.setItem('lang', isZh ? 'en' : 'zh');
+    }
+
+    /* --- Init language on load --- */
+    (function() {
+        const saved = localStorage.getItem('lang');
+        const lang = saved || 'zh';
+        document.body.classList.remove('lang-zh', 'lang-en');
+        document.body.classList.add('lang-' + lang);
+        const btn = document.getElementById('langBtn');
+        if (btn) btn.textContent = lang === 'zh' ? 'EN' : '中';
+    })();
+</script>
+
+</body>
+</html>
